@@ -1,6 +1,6 @@
 package com.sist.dao;
 // 오라클 연결
-// git 
+// git gg
 import java.util.*;
 import java.sql.*;
 
