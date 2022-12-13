@@ -7,7 +7,7 @@ public class BoardDAO {
 	private Connection conn;
 	// sql 문장 전송 객체
 	private PreparedStatement ps;
-	private final String URL="jdbc.oracle.thin:@localhost:1521:XE";
+	private final String URL="jdbc:oracle:thin:@localhost:1521:XE";
 	                             // 업체. 연결.
 	// 드라이버 등록
 	public BoardDAO()
@@ -81,7 +81,34 @@ public class BoardDAO {
 	}
 	
 	// 2. 게시물 추가 ==> INSERT
-	
+	public void boardInsert(BoardVO vo)
+	{
+		try
+		{
+			//1. 연결
+			getConnetion();
+			//2. sql문장 전송
+			String sql ="INSET INTO freeboard(no, name, subject, content, pwd) VALUES "
+					+ "( (SELECT NVL(MAX(no)+1,1) FROM freeboard),?,?,?,?) ";
+			//3. 오라클로 전송
+			ps= conn.prepareStatement(sql);
+			//4. 실행전에 ?에 값을 채운다
+			ps.setString(1,  vo.getName());
+			ps.setString(2,  vo.getSubject());
+			ps.setString(3,  vo.getContent());
+			ps.setString(4,  vo.getPwd());
+			
+			//5. 실행 명령
+			ps.executeUpdate();
+		}catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		finally
+		{
+			disConnection();
+		}
+	}
 	
 	// 3. 상세보기 ==> SELECT (WHERE) => vo에 묶어서 보여줘야한다
 	public BoardVO boardDeatailData(int no) 
