@@ -55,7 +55,7 @@ public class BoardList extends HttpServlet {
 			 
 			 out.println("<tr>");
 			 out.println("<td class=text-center width=10%>"+vo.getNo()+"</td>");
-			 out.println("<td width=45%>"+vo.getSubject()+"</td>");
+			 out.println("<td width=45%><a href=BoardDetail?no="+vo.getNo()+">"+vo.getSubject()+"</a></td>");
 			 out.println("<td class=text-center width=15%>"+vo.getName()+"</td>");
 			 out.println("<td class=text-center width=20%>"+vo.getDbday()+"</td>");
 			 out.println("<td class=text-center width=10%>"+vo.getHit()+"</td>");
