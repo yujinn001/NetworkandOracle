@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="java.util.*,com.sist.dao.*"%>
 <%
-    request.setCharacterEncoding("EUC-KR");
+    request.setCharacterEncoding("gEUC-KR");
     String dong=request.getParameter("dong");
     ArrayList<ZipcodeVO> list=null;
     ZipCodeDAO dao=new ZipCodeDAO();
